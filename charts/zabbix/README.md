@@ -391,6 +391,7 @@ The following tables lists the configurable parameters of the chart and their de
 | postgresAccess.secretUserKey | string | `"user"` | key of the postgres access secret where user name for the postgres db is found |
 | postgresAccess.user | string | `"zabbix"` | User of database, ignored if existingSecretName is set |
 | postgresql.enabled | bool | `true` | Create a database using Postgresql. Not usable in combination with ``zabbixserver.zabbixServerHA=true`` |
+| postgresql.envFrom | list | `[]` | Extra environment variables from secrets or configmaps |
 | postgresql.extraContainers | list | `[]` | Additional containers to start within the postgresql pod |
 | postgresql.extraEnv | list | `[]` | Extra environment variables. A list of additional environment variables. |
 | postgresql.extraInitContainers | list | `[]` | Additional init containers to start within the postgresql pod |
@@ -435,6 +436,7 @@ The following tables lists the configurable parameters of the chart and their de
 | zabbixAgent.ZBX_SERVER_PORT | int | `10051` | Zabbix Server port |
 | zabbixAgent.ZBX_TIMEOUT | int | `4` | The variable is used to specify timeout for processing checks. By default, value is 4. |
 | zabbixAgent.enabled | bool | `true` | Enables use of **Zabbix Agent** |
+| zabbixAgent.envFrom | list | `[]` | Extra environment variables from secrets or configmaps |
 | zabbixAgent.extraContainers | list | `[]` | Additional containers to start within the Zabbix Agent pod |
 | zabbixAgent.extraDaemonSetAnnotations | object | `{}` | Annotations to add to the daemonSet |
 | zabbixAgent.extraDaemonSetLabels | object | `{}` | Labels to add to the daemonSet |
@@ -491,6 +493,7 @@ The following tables lists the configurable parameters of the chart and their de
 | zabbixJavaGateway.ZBX_START_POLLERS | int | `5` | This variable is specified amount of pollers. By default, value is 5 |
 | zabbixJavaGateway.ZBX_TIMEOUT | int | `3` | This variable is used to specify timeout for outgoing connections. By default, value is 3. |
 | zabbixJavaGateway.enabled | bool | `false` | Enables use of **Zabbix Java Gateway** |
+| zabbixJavaGateway.envFrom | list | `[]` | Extra environment variables from secrets or configmaps |
 | zabbixJavaGateway.extraContainers | list | `[]` | Additional containers to start within the Zabbix Java Gateway pod |
 | zabbixJavaGateway.extraDeploymentAnnotations | object | `{}` | Annotations to add to the deployment |
 | zabbixJavaGateway.extraDeploymentLabels | object | `{}` | Labels to add to the deployment |
@@ -534,6 +537,7 @@ The following tables lists the configurable parameters of the chart and their de
 | zabbixProxy.ZBX_TIMEOUT | int | `4` |  |
 | zabbixProxy.ZBX_VMWARECACHESIZE | string | `"128M"` | Cache size |
 | zabbixProxy.enabled | bool | `false` | Enables use of **Zabbix Proxy** |
+| zabbixProxy.envFrom | list | `[]` | Extra environment variables from secrets or configmaps |
 | zabbixProxy.extraContainers | list | `[]` | Additional containers to start within the Zabbix Proxy pod |
 | zabbixProxy.extraEnv | list | `[]` | Extra environment variables. A list of additional environment variables. List can be extended with other environment variables listed here: https://github.com/zabbix/zabbix-docker/tree/6.0/Dockerfiles/proxy-sqlite3/alpine#environment-variables. See example: https://github.com/zabbix-community/helm-zabbix/blob/main/charts/zabbix/docs/example/kind/values.yaml |
 | zabbixProxy.extraInitContainers | list | `[]` | Additional init containers to start within the Zabbix Proxy pod |
@@ -568,6 +572,7 @@ The following tables lists the configurable parameters of the chart and their de
 | zabbixProxy.service.type | string | `"ClusterIP"` | Type of service to expose the application. Valid options are ExternalName, ClusterIP, NodePort, and LoadBalancer. More details: https://kubernetes.io/docs/concepts/services-networking/service/ |
 | zabbixProxy.startupProbe | object | `{}` | The kubelet uses startup probes to know when a container application has started.  Reference: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/ |
 | zabbixServer.enabled | bool | `true` | Enables use of **Zabbix Server** |
+| zabbixServer.envFrom | list | `[]` | Extra environment variables from secrets or configmaps |
 | zabbixServer.extraContainers | list | `[]` | Additional containers to start within the Zabbix Server pod |
 | zabbixServer.extraDeploymentAnnotations | object | `{}` | Annotations to add to the deployment |
 | zabbixServer.extraDeploymentLabels | object | `{}` | Labels to add to the deployment |
@@ -578,8 +583,9 @@ The following tables lists the configurable parameters of the chart and their de
 | zabbixServer.extraPodSpecs | object | `{}` | Additional specifications to the Zabbix Server pod |
 | zabbixServer.extraVolumeMounts | list | `[]` | Additional volumeMounts to the Zabbix Server container |
 | zabbixServer.extraVolumes | list | `[]` | Additional volumes to make available to the Zabbix Server pod |
-| zabbixServer.haNodesAutoClean | object | `{"concurrencyPolicy":"Replace","cronjobLabels":{},"deleteOlderThanSeconds":3600,"enabled":true,"extraContainers":[],"extraEnv":[],"extraInitContainers":[],"extraPodSpecs":{},"extraVolumeMounts":[],"extraVolumes":[],"image":{"pullPolicy":"IfNotPresent","pullSecrets":[],"repository":"postgres","tag":16},"resources":{},"schedule":"0 1 * * *","securityContext":{}}` | Automatically clean orphaned ha nodes from ha_nodes db table |
+| zabbixServer.haNodesAutoClean | object | `{"concurrencyPolicy":"Replace","cronjobLabels":{},"deleteOlderThanSeconds":3600,"enabled":true,"envFrom":[],"extraContainers":[],"extraEnv":[],"extraInitContainers":[],"extraPodSpecs":{},"extraVolumeMounts":[],"extraVolumes":[],"image":{"pullPolicy":"IfNotPresent","pullSecrets":[],"repository":"postgres","tag":16},"resources":{},"schedule":"0 1 * * *","securityContext":{}}` | Automatically clean orphaned ha nodes from ha_nodes db table |
 | zabbixServer.haNodesAutoClean.cronjobLabels | object | `{}` | Labels to add to the cronjob for ha nodes autoclean |
+| zabbixServer.haNodesAutoClean.envFrom | list | `[]` | Extra environment variables from secrets or configmaps |
 | zabbixServer.haNodesAutoClean.extraContainers | list | `[]` | Additional containers to start within the cronjob hanodes autoclean |
 | zabbixServer.haNodesAutoClean.extraEnv | list | `[]` | Extra environment variables. A list of additional environment variables. |
 | zabbixServer.haNodesAutoClean.extraInitContainers | list | `[]` | Additional init containers to start within the cronjob hanodes autoclean |
@@ -647,6 +653,7 @@ The following tables lists the configurable parameters of the chart and their de
 | zabbixServer.zabbixServerHA.serviceAccount | object | `{"annotations":{}}` | Serviceaccount for the database initialization and upgrade job |
 | zabbixServer.zabbixServerHA.serviceAccount.annotations | object | `{}` | Extra annotations for the serviceAccount needed to give the DB job API permissions |
 | zabbixWeb.enabled | bool | `true` | Enables use of **Zabbix Web** |
+| zabbixWeb.envFrom | list | `[]` | Extra environment variables from secrets or configmaps |
 | zabbixWeb.extraContainers | list | `[]` | Additional containers to start within the Zabbix Web pod |
 | zabbixWeb.extraDeploymentAnnotations | object | `{}` | Annotations to add to the deployment |
 | zabbixWeb.extraDeploymentLabels | object | `{}` | Labels to add to the deployment |
@@ -693,6 +700,7 @@ The following tables lists the configurable parameters of the chart and their de
 | zabbixWeb.service.type | string | `"ClusterIP"` | Type of service to expose the application. Valid options are ExternalName, ClusterIP, NodePort, and LoadBalancer. More details: https://kubernetes.io/docs/concepts/services-networking/service/ |
 | zabbixWeb.startupProbe | object | `{}` | The kubelet uses startup probes to know when a container application has started.  Reference: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/ |
 | zabbixWebService.enabled | bool | `true` | Enables use of **Zabbix Web Service** |
+| zabbixWebService.envFrom | list | `[]` | Extra environment variables from secrets or configmaps |
 | zabbixWebService.extraContainers | list | `[]` | Additional containers to start within the Zabbix Web Service pod |
 | zabbixWebService.extraDeploymentAnnotations | object | `{}` | Annotations to add to the deployment |
 | zabbixWebService.extraDeploymentLabels | object | `{}` | Labels to add to the deployment |

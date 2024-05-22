@@ -50,6 +50,10 @@ spec:
             {{- with .Values.zabbixServer.haNodesAutoClean.extraEnv }}
               {{- toYaml . | nindent 14 }}
             {{- end }}
+            {{- with .Values.zabbixServer.haNodesAutoClean.envFrom }}
+            envFrom:
+              {{- toYaml . | nindent 14 }}
+            {{- end }}
             {{- with .Values.zabbixServer.haNodesAutoClean.extraVolumeMounts }}
             volumeMounts:
               {{- toYaml . | nindent 14 }}

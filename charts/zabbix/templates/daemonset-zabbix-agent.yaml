@@ -131,9 +131,9 @@ spec:
         {{- with .Values.zabbixAgent.extraContainers }}
         {{- toYaml . | nindent 8 }}
         {{- end }}
-      {{- if .Values.affinity }}
+      {{- with .Values.affinity }}
       affinity:
-        {{- toYaml .Values.affinity | nindent 8 }}
+        {{- toYaml . | nindent 8 }}
       {{- end }}
       imagePullSecrets:
       {{- range .Values.zabbixAgent.image.pullSecrets }}

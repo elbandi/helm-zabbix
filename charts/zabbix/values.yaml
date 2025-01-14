@@ -267,6 +267,8 @@ zabbixServer:
   readinessProbe: {}
   # -- The kubelet uses startup probes to know when a container application has started.  Reference: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/
   startupProbe: {}
+  # -- nodeSelector configurations. Reference: https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/
+  nodeSelector: {}
 
 # **PostgreSQL** configurations
 postgresql:
@@ -340,6 +342,8 @@ postgresql:
   readinessProbe: {}
   # -- The kubelet uses startup probes to know when a container application has started.  Reference: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/
   startupProbe: {}
+  # -- nodeSelector configurations. Reference: https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/
+  nodeSelector: {}
 
 # **Zabbix Proxy** configurations
 zabbixProxy:
@@ -448,6 +452,8 @@ zabbixProxy:
   readinessProbe: {}
   # -- The kubelet uses startup probes to know when a container application has started.  Reference: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/
   startupProbe: {}
+  # -- nodeSelector configurations. Reference: https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/
+  nodeSelector: {}
 
 # **Zabbix Agent** configurations
 zabbixAgent:
@@ -575,6 +581,8 @@ zabbixAgent:
     timeoutSeconds: 3
     failureThreshold: 5
     successThreshold: 1
+  # -- nodeSelector configurations. Reference: https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/
+  nodeSelector: {}
 
 # **Zabbix Web** configurations
 zabbixWeb:
@@ -688,6 +696,8 @@ zabbixWeb:
     successThreshold: 1
   # -- The kubelet uses startup probes to know when a container application has started.  Reference: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/
   startupProbe: {}
+  # -- nodeSelector configurations. Reference: https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/
+  nodeSelector: {}
 
 # **Zabbix Web Service** configurations
 zabbixWebService:
@@ -752,6 +762,8 @@ zabbixWebService:
   readinessProbe: {}
   # -- The kubelet uses startup probes to know when a container application has started.  Reference: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/
   startupProbe: {}
+  # -- nodeSelector configurations. Reference: https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/
+  nodeSelector: {}
 
 # **Zabbix Java Gateway** configurations
 zabbixJavaGateway:
@@ -867,6 +879,8 @@ zabbixJavaGateway:
     timeoutSeconds: 3
     failureThreshold: 5
     successThreshold: 1
+  # -- nodeSelector configurations. Reference: https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/
+  nodeSelector: {}
 
 # Zabbix Browser Monitoring, supported since 7.0.
 # See https://assets.zabbix.com/files/events/2024/conference_benelux_2024/KasparsM_browser_monitoring.pdf
@@ -900,6 +914,8 @@ zabbixBrowserMonitoring:
 
   # -- Custom WebDriver URL. If set, it overrides the default internal WebDriver service URL. Set zabbixBrowserMonitoring.webdriver.enabled to false when setting this.
   customWebDriverURL: ""
+  # -- nodeSelector configurations. Reference: https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/
+  nodeSelector: {}
 
 # Ingress configurations
 ingress:
@@ -925,9 +941,6 @@ ingress:
   # ingressClassName: nginx
   # -- pathType is only for k8s >= 1.1=
   pathType: Prefix
-
-# -- nodeSelector configurations. Reference: https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/
-nodeSelector: {}
 
 # -- Tolerations configurations. Reference: https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/
 tolerations: []

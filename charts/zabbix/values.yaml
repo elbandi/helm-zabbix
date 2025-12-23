@@ -560,6 +560,16 @@ zabbixAgent:
   extraPodSpecs: {}
   # -- Security Context configurations. Reference: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/
   securityContext: {}
+  ## Expose the service to the host network
+  hostNetwork: true
+  # Specify dns configuration options for agent containers e.g ndots
+  ## ref: https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/#pod-dns-config
+  dnsConfig: {}
+  #  options:
+  #  - name: ndots
+  #    value: "1"
+  ## Share the host process ID namespace
+  hostPID: true
   # -- The kubelet uses liveness probes to know when to restart a container. Reference: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/
   livenessProbe:
     tcpSocket:

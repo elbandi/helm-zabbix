@@ -36,6 +36,15 @@ spec:
         {{- toYaml .Values.zabbixAgent.containerLabels | nindent 8 }}
         {{- end }}
     spec:
+      {{- if .Values.zabbixAgent.hostNetwork }}
+      hostNetwork: {{ .Values.zabbixAgent.hostNetwork }}
+      dnsPolicy: ClusterFirstWithHostNet
+      {{- end }}
+      {{- if .Values.zabbixAgent.dnsConfig }}
+      dnsConfig:
+        {{ toYaml .Values.zabbixAgent.dnsConfig | nindent 8 }}
+      {{- end }}
+      hostPID: {{ .Values.zabbixAgent.hostPID }}
       serviceAccountName: {{ template "zabbix.serviceAccountName" . }}
       {{- with .Values.zabbixAgent.extraPodSpecs }}
       {{- toYaml . | nindent 6 }}
